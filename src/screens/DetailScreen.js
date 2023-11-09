@@ -1,6 +1,7 @@
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useEventsDetails } from '../hooks/useEventsDetails';
+import { EventDetails } from '../components/EventDetails';
 
 const height = Dimensions.get('screen').height;
 
@@ -11,7 +12,9 @@ export default function DetailScreen ({ navigation, route }) {
     const uri =  `https://image.tmdb.org/t/p/w500${event.poster_path}`;
 
     // Hook personalizado
-    useEventsDetails(event.id)
+    const { isLoading, cast, eventFull } = useEventsDetails(event.id);
+
+    console.log(isLoading);
 
     return (
         <ScrollView>
@@ -22,8 +25,13 @@ export default function DetailScreen ({ navigation, route }) {
                 />
             </View>
             <View style={ styles.marginContainer }>
-                <Text style={ styles.subtitle }> {event.original_title} </Text>
-                <Text style={ styles.title }> {event.title} </Text>
+                {
+                    isLoading
+                    ? <ActivityIndicator size={100} color="grey" />
+                    : <EventDetails eventFull={ eventFull } cast={ cast } />
+                }
+               
+                
             </View>
         </ScrollView>
     );
