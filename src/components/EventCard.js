@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 
 
 export const EventCard = ( { event } ) => {
-
     //console.log(event);
     // Esta ruta siempre es la misma para mostrar la imagen
     const uri =  `https://image.tmdb.org/t/p/w500${event.poster_path}` 
@@ -16,14 +15,12 @@ export const EventCard = ( { event } ) => {
                 source = {{
                     uri: uri
                 }}
-
                 style={
                     styles.image
                 }
             />
         </View>
     )
-
 }
 
 const styles = StyleSheet.create({
