@@ -7,7 +7,7 @@ export const useEventsDetails = ( idEvent ) => {
         eventFull: undefined,
         cast: []
     });
-    
+
     const getEventsDetails = async () => {
         const eventDetailsPromise = await eventsDB.get(`/${ idEvent }`);
         const eventCastPromise = await eventsDB.get(`/${ idEvent }/credits`);
@@ -27,6 +27,6 @@ export const useEventsDetails = ( idEvent ) => {
     }, []);
 
     return {
-        state
+        ...state
     }
 }

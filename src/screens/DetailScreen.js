@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Button, Dimensions, FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useEventsDetails } from '../hooks/useEventsDetails';
 import { EventDetails } from '../components/EventDetails';
@@ -13,26 +13,40 @@ export default function DetailScreen ({ navigation, route }) {
 
     // Hook personalizado
     const { isLoading, cast, eventFull } = useEventsDetails(event.id);
-
     console.log(isLoading);
 
     return (
         <ScrollView>
-            <View style={ styles.imageContainer }>
-                <Image 
-                    source={{ uri }}
-                    style={ styles.posterImage }
+            <View style={{ marginBottom: 100 }} >
+                <View style={ styles.imageContainer }>
+                    <Image 
+                        source={{ uri }}
+                        style={ styles.posterImage }
+                    />
+                </View>
+                <View style={ styles.marginContainer }>
+                    {
+                        isLoading
+                        ? <ActivityIndicator size={100} color="grey" />
+                        : <EventDetails eventFull={ eventFull } cast={ cast } />
+                    }                        
+                </View>
+                <View style={ styles.button }>
+                    <Button                                   
+                        onPress={ () => navigation.navigate('OrganizersScreen', cast) }
+                        title='Click aquí para ver organizadores'                            
+                    />  
+                </View>                
+            </View>
+
+            { /* Boton de volver atrás */ }
+            <View style={ styles.backButton }>
+                <Button                    
+                    title='<-- Atrás'
+                    onPress={ () => navigation.pop() }
                 />
-            </View>
-            <View style={ styles.marginContainer }>
-                {
-                    isLoading
-                    ? <ActivityIndicator size={100} color="grey" />
-                    : <EventDetails eventFull={ eventFull } cast={ cast } />
-                }
-               
-                
-            </View>
+            </View>          
+
         </ScrollView>
     );
 }
@@ -56,5 +70,19 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold'
+    },
+    contentCast: {
+        marginHorizontal: 20,
+        marginTop: 20
+    },
+    button: {
+        marginTop: 30,
+        marginBottom: 100,
+    },
+    backButton: {
+        position: 'absolute',
+        zIndex: 999,
+        elevation: 9,
+        top: 50
     }
 })
