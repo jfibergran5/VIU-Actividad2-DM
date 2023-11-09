@@ -28,7 +28,7 @@ export default function DetailScreen ({ navigation, route }) {
                     {
                         isLoading
                         ? <ActivityIndicator size={100} color="grey" />
-                        : <EventDetails eventFull={ eventFull } cast={ cast } />
+                        : <EventDetails eventFull={ eventFull } />
                     }                        
                 </View>
                 <View style={ styles.button }>

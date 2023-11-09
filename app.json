@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "VIU-Actividad2-DM",
-    "slug": "VIU-Actividad2-DM",
+    "name": "actividad2",
+    "slug": "actividad2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

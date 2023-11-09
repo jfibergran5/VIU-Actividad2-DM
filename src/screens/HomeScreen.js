@@ -42,6 +42,7 @@ export const HomeScreen = () => {
                         sliderWidth = { width }
                         itemWidth = { 300 }
                         inactiveSlideOpacity={0.3}
+                        autoplay = { true }
                     />
                 </View>
 

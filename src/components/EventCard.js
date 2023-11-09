@@ -8,7 +8,7 @@ export const EventCard = ({ event, height = 420, width = 300}) => {
     // Esta ruta siempre es la misma para mostrar la imagen
     const uri =  `https://image.tmdb.org/t/p/w500${event.poster_path}` 
     const navigation = useNavigation();
-    
+
     return (
         <TouchableOpacity 
             onPress={ () => navigation.navigate('DetailScreen', event) }

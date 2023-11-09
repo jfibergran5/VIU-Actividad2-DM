@@ -1,9 +1,8 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 
-export const EventDetails = ({ eventFull, cast }) => {
+export const EventDetails = ({ eventFull }) => {
     return (
-        <ScrollView>
+        <SafeAreaView>
             <View style={ styles.imageContainer }>             
                 <Text style={ styles.subtitle }> 
                     {eventFull.original_title} 
@@ -27,7 +26,7 @@ export const EventDetails = ({ eventFull, cast }) => {
                     {eventFull.overview} 
                 </Text>
             </View>
-        </ScrollView>
+        </SafeAreaView>
     );
 }
 
