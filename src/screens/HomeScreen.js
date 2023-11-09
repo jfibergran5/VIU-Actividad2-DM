@@ -1,10 +1,15 @@
 import { ActivityIndicator, Text, View } from 'react-native';
-import { Button } from 'react-native-web';
 import { useEvents } from '../hooks/useEvents';
+import {EventCard} from '../components/EventCard';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function HomeScreen({ navigation }) {
+export const HomeScreen = () => {
 
+    // Desestructuramos los states de nuestro hook personalizado 
     const { actualEvents, isLoading } = useEvents();
+
+    // Desestructuramos un valor que viene en useSafeAreaInsets();
+    const { top } = useSafeAreaInsets();
 
     if(isLoading) {
         return (
@@ -16,19 +21,17 @@ export default function HomeScreen({ navigation }) {
                 <ActivityIndicator color="blue" size={ 100 } />
             </View>
         )
-    } else {
-        console.log(actualEvents[1]?.title);
-    }
-
-    
+    } 
 
     return (
-        <View>
-            <Text>HELLO HOMESCREEN</Text>
-            <Button
-                title = "Ir a pantalla detalle"
-                onPress= { () => navigation.navigate('DetailScreen') }
+        <View style={{ marginTop: top + 20 }} >
+            <EventCard 
+                event = {
+                    actualEvents[0]
+                }
             />
         </View>
     );
+    
+    
 };

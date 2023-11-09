@@ -10,14 +10,12 @@ export const useEvents = () => {
         const resp = await eventsDB.get('/now_playing');
         const eventos = resp.data.results
         setActualEvents(eventos);
-
         setIsLoading(false)
     }
 
     useEffect(() => {
         getEvents()
     }, [])
-
 
     return {
         actualEvents,
